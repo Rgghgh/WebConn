@@ -1,26 +1,3 @@
-package com.rgghgh.gcmdemo.ui;
-
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-
-import com.rgghgh.gcmdemo.R;
-import com.rgghgh.gcmdemo.gcm.GcmRegistrationService;
-import com.rgghgh.gcmdemo.gcm.GcmSender;
-import com.rgghgh.gcmdemo.webconn.OnWebResultListener;
-import com.rgghgh.gcmdemo.webconn.WebRequest;
-import com.rgghgh.gcmdemo.webconn.WebThread;
-
-import java.util.ArrayList;
-
-
 public class ChatActivity extends Activity implements View.OnClickListener, OnWebResultListener
 {
     private ArrayList<Message> msgs;
