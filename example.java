@@ -40,46 +40,7 @@ public class ChatActivity extends Activity implements View.OnClickListener, OnWe
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
-        /* ------ GET INTENT DATA ------ */
-        Intent in = getIntent();
-        this.myNumber = in.getStringExtra(MainActivity.EXTRA_PHONE);
-        this.toNumber = in.getStringExtra(MainActivity.EXTRA_TO);
-
-        /* ------ INIT VIEWS ------ */
-        this.lvChat = (ListView) findViewById(R.id.lvChat);
-        this.etMsg = (EditText) findViewById(R.id.etMsg);
-        this.btnSend = (Button) findViewById(R.id.btnSend);
-
-        this.btnSend.setOnClickListener(this);
-
-        /* ------ SETUP MESSAGES DISPLAY ------ */
-        this.msgs = new ArrayList<>();
-        this.adapter = new MessageAdapter(this, this.msgs);
-        this.lvChat.setAdapter(this.adapter);
-        this.lvChat.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-
-        /* ------ INCOMING ------ */
-
-        receiver = new BroadcastReceiver()
-        {
-            @Override
-            public void onReceive(Context context, Intent intent)
-            {
-                String message = intent.getStringExtra("message");
-                msgs.add(new Message(message, false));
-                adapter.notifyDataSetChanged();
-            }
-        };
-
-        registerReceiver(receiver, new IntentFilter("dataToChatActivity"));
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        unregisterReceiver(receiver);
-        super.onDestroy();
+        // SOME CODE
     }
 
     @Override
@@ -88,11 +49,10 @@ public class ChatActivity extends Activity implements View.OnClickListener, OnWe
         String text = this.etMsg.getText().toString();
         this.etMsg.setText("");
 
-        WebRequest request = new WebRequest(0, MainActivity.URL + "message");
+        WebRequest request = new WebRequest(0, "http://exmaple.com?optionalGet=value");
         request.setOnWebResultListener(this);
-        request.setPostQuery("phone=" + toNumber + "&msg=" + text);
+        request.setPostQuery("post1=value1&post2=value2");
         WebThread.handle(request);
-
     }
 
     @Override
